@@ -39,7 +39,12 @@ for (var i = 0; i < word_array.length && check_palindrome; i++) {
     check_palindrome = false;
   }
 }
-
+// Output in console
 if (check_palindrome) {
   console.log('The word ' + word + ' you entered is a palindrome.');
+}
+
+// Creation of function
+function checkPalindrome(word) {
+  
 }
