@@ -31,7 +31,7 @@ if (checkPalindrome(word_to_check)) {
 }
 console.log('');
 
-// --------------- Creation of the function "checkPalindrome" ---------------
+// ----------- Creation of the function "checkPalindrome" -----------
 
 function checkPalindrome(word) {
 
@@ -92,23 +92,29 @@ while (check_valid_number === false) {
 // Variables initialization: user's guess (odd or even)
 var user_guess = prompt('What is your guess? Choose between \'odd\' or \'even\'.');
 user_guess = user_guess.toLowerCase();
+
+// Check valid input: user's guess
+while (user_guess !== 'odd' && user_guess !== 'even') {
+  alert('ERROR. The value you entered is not valid.');
+  user_guess = prompt('Please enter \'odd\' or \'even\'.');
+  user_guess = user_guess.toLowerCase();
+}
 console.log('The user\'s guess is: ' + user_guess + '.');
 
-// Generating random number: computer's number
-var pc_number = Math.floor(Math.random() * maximum_number + 1);
+// Generating random number: computer's number (with function)
+var pc_number = randomNumber(minimum_number, maximum_number);
 console.log('The computer\'s number is: ' + pc_number + '.');
 
-// Calculating Sum
-var sum = user_number + pc_number;
+// Calculating Sum (with function)
+var sum = sumNumbers(user_number, pc_number);
 console.log('The sum of the two numbers is: ' + sum + '.');
 
-// Check if Sum is odd or even
-if (sum % 2) {
+// Check if Sum is odd or even (with function)
+var check_sum = checkOdd(sum);
+if (check_sum) {
   console.log('The sum is odd.');
-  var check_odd = true;
 } else {
   console.log('The sum is even.');
-  check_odd = false;
 }
 
 // ------------------- Check the winner -------------------
@@ -120,7 +126,7 @@ if (user_guess === 'odd') {
   check_user_guess = false;
 }
 
-// Comparison between user's guess (boolean) and sum (boolean): odd or even?
+// Comparison between user's guess (boolean) and sum (boolean)
 if (check_user_guess && check_odd) {
   console.log('You won! The sum is odd.');
 } else if (!check_user_guess && !check_odd) {
@@ -129,4 +135,31 @@ if (check_user_guess && check_odd) {
   console.log('You lose! The sum is even and the computer won.');
 } else if (!check_user_guess && check_odd) {
   console.log('You lose! The sum is odd and the computer won.');
+}
+
+
+// --------------------- Creation of functions ---------------------
+
+// ***** FUNCTION: Generating random number from minimum_number to maximum_number *****
+function randomNumber(minNum, maxNum) {
+  var random_number = Math.floor(Math.random() * maxNum + minNum);
+  return random_number;
+}
+
+// ***** FUNCTION: Calculating Sum *****
+function sumNumbers(num1, num2) {
+  var sum_result = num1 + num2;
+  return sum_result;
+}
+
+// ***** FUNCTION: Check odd-even numbers *****
+function checkOdd(number){
+  if (number % 2) {
+    // If the number is odd it returns "true"
+    var check_odd = true;
+  } else {
+    // If the number is even it returns "false"
+    check_odd = false;
+  }
+  return check_odd;
 }
