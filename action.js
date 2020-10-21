@@ -6,15 +6,18 @@ Palindroma: scrivere una funzione per valutare se una parola è palindroma oppur
 
 EXERCISE NUMBER 2. ODD OR EVEN?
 Pari o dispari: scrivere una (o più di una) funzione per simulare il gioco di pari e dispari tra l'utente e il computer.
-L'utente sceglie un numero tra 1 e 5 e sceglie "pari" o "dispari".
+L'utente sceglie un numero tra 1 e 5
+e sceglie "pari" o "dispari".
 Il computer genera un secondo numero casuale tra 1 e 5.
-Per vedere chi dei due vince, si deve fare la somma dei numeri dell'utente e del computer e stabilire se il risultato è pari o dispari.
+Per vedere chi dei due vince, si deve fare la somma dei numeri dell'utente e del computer
+e stabilire se il risultato è pari o dispari.
 Ad esempio, l'utente inserisce il numero 1 e indica come scelta "pari"; il computer genera casualmente il numero 3. In questo caso ha vinto l'utente (perché 1+3 = 4, che è pari)
 */
 
 
 // ******************** EXERCISE NUMBER 1. PALINDROMES ********************
 console.log('*** EXERCISE NUMBER 1. PALINDROMES ***');
+console.log('');
 
 // Variables initialization
 var word_to_check = prompt('Enter a word to check if it is a palindrome.');
@@ -22,9 +25,9 @@ console.log('The word you entered is: ' + word_to_check + '.');
 
 // Output in console
 if (checkPalindrome(word_to_check)) {
-  console.log('The word ' + word_to_check + ' you entered is a palindrome.');
+  console.log('The word \'' + word_to_check + '\' you entered is a palindrome.');
 } else {
-  console.log('The word ' + word_to_check + ' you entered is not a palindrome.');
+  console.log('The word \'' + word_to_check + '\' you entered is not a palindrome.');
 }
 console.log('');
 
@@ -50,6 +53,80 @@ function checkPalindrome(word) {
       check_palindrome = false;
     }
   }
-
   return check_palindrome;
+}
+
+
+// ******************** EXERCISE NUMBER 2. ODD OR EVEN? ********************
+console.log('*** EXERCISE NUMBER 2. ODD OR EVEN? ***');
+console.log('');
+
+// Variables and constants initialization: user's number
+const minimum_number = 1;
+const maximum_number = 5;
+var user_number = parseFloat(prompt('Enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
+
+// Check valid input: user's number - OPTIMIZED SOLUTION (only While loop)
+while (isNaN(user_number) || user_number < minimum_number || user_number > maximum_number) {
+  alert('ERROR. The value you entered is invalid.');
+  user_number = parseFloat(prompt('Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
+  console.log('ERROR. The value you entered is invalid. Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.');
+}
+console.log('The number you entered is: ' + user_number + '.');
+
+/*
+// Check valid input: user's number - SOLUTION While loop & If
+var check_valid_number = false;
+while (check_valid_number === false) {
+  if (!isNaN(user_number) && user_number >= minimum_number && user_number <= maximum_number) {
+    console.log('The number you entered is: ' + user_number + '.');
+    check_valid_number = true;
+  } else {
+    alert('ERROR. The value you entered is invalid.');
+    user_number = parseFloat(prompt('Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
+    console.log('ERROR. The value you entered is invalid. Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.');
+  }
+}
+*/
+
+// Variables initialization: user's guess (odd or even)
+var user_guess = prompt('What is your guess? Choose between \'odd\' or \'even\'.');
+user_guess = user_guess.toLowerCase();
+console.log('The user\'s guess is: ' + user_guess + '.');
+
+// Generating random number: computer's number
+var pc_number = Math.floor(Math.random() * maximum_number + 1);
+console.log('The computer\'s number is: ' + pc_number + '.');
+
+// Calculating Sum
+var sum = user_number + pc_number;
+console.log('The sum of the two numbers is: ' + sum + '.');
+
+// Check if Sum is odd or even
+if (sum % 2) {
+  console.log('The sum is odd.');
+  var check_odd = true;
+} else {
+  console.log('The sum is even.');
+  check_odd = false;
+}
+
+// ------------------- Check the winner -------------------
+
+// Check user's guess: transforming into boolean variable (for comparison)
+if (user_guess === 'odd') {
+  var check_user_guess = true;
+} else if (user_guess === 'even') {
+  check_user_guess = false;
+}
+
+// Comparison between user's guess (boolean) and sum (boolean): odd or even?
+if (check_user_guess && check_odd) {
+  console.log('You won! The sum is odd.');
+} else if (!check_user_guess && !check_odd) {
+  console.log('You won! The sum is even.');
+} else if (check_user_guess && !check_odd) {
+  console.log('You lose! The sum is even and the computer won.');
+} else if (!check_user_guess && check_odd) {
+  console.log('You lose! The sum is odd and the computer won.');
 }
