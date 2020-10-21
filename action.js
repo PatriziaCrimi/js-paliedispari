@@ -17,34 +17,39 @@ Ad esempio, l'utente inserisce il numero 1 e indica come scelta "pari"; il compu
 console.log('*** EXERCISE NUMBER 1. PALINDROMES ***');
 
 // Variables initialization
-var word = prompt('Enter a word');
-console.log('The word you entered is: ' + word + '.');
+var word_to_check = prompt('Enter a word to check if it is a palindrome.');
+console.log('The word you entered is: ' + word_to_check + '.');
 
-// Standardize the word to lowercase --> necessary to compare each character
-var standardized_word = word.toLowerCase();
-console.log('The word standardized to lowercase is: ' + standardized_word + '.');
-
-// Transforming string into an array
-var word_array = Array.from(standardized_word);
-console.log('The word (already standardized to lowercase) transformed into an array is: ');
-console.log(word_array);
-
-// Check if the word (already standardized to lowercase) is a palindrome
-var check_palindrome = true;
-
-for (var i = 0; i < word_array.length && check_palindrome; i++) {
-  var last_character = word_array.length - (i+1);
-  if (word_array[i] !== word_array[last_character]) {
-    console.log('The word ' + word + ' you entered is not a palindrome.');
-    check_palindrome = false;
-  }
-}
 // Output in console
-if (check_palindrome) {
-  console.log('The word ' + word + ' you entered is a palindrome.');
+if (checkPalindrome(word_to_check)) {
+  console.log('The word ' + word_to_check + ' you entered is a palindrome.');
+} else {
+  console.log('The word ' + word_to_check + ' you entered is not a palindrome.');
 }
+console.log('');
 
-// Creation of function
+// --------------- Creation of the function "checkPalindrome" ---------------
+
 function checkPalindrome(word) {
-  
+
+  // Standardize the word to lowercase --> necessary to compare each character
+  var standardized_word = word.toLowerCase();
+  console.log('The word standardized to lowercase is: ' + standardized_word + '.');
+
+  // Transforming string into an array
+  var word_array = Array.from(standardized_word);
+  console.log('The word (already standardized to lowercase) transformed into an array is: ');
+  console.log(word_array);
+
+  // Check if the word (already standardized to lowercase) is a palindrome
+  var check_palindrome = true;
+
+  for (var i = 0; i < word_array.length && check_palindrome; i++) {
+    var last_character = word_array.length - (i+1);
+    if (word_array[i] !== word_array[last_character]) {
+      check_palindrome = false;
+    }
+  }
+
+  return check_palindrome;
 }
