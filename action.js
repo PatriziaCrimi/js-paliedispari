@@ -64,6 +64,8 @@ console.log('');
 // Variables and constants initialization: user's number
 const minimum_number = 1;
 const maximum_number = 5;
+var user_name = prompt('Enter your name.');
+console.log('Player: ' + user_name + ' VS the computer.');
 var user_number = parseFloat(prompt('Enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
 
 // Check valid input: user's number - OPTIMIZED SOLUTION (only While loop)
@@ -109,34 +111,15 @@ console.log('The computer\'s number is: ' + pc_number + '.');
 var sum = sumNumbers(user_number, pc_number);
 console.log('The sum of the two numbers is: ' + sum + '.');
 
-// Check if Sum is odd or even (with function)
-var check_sum = checkOdd(sum);
-if (check_sum) {
-  console.log('The sum is odd.');
+// Check the winner (with function)
+var winner = checkWinner(user_guess, sum, user_name);
+if (winner === 'computer') {
+  console.log('The winner is the: ' + winner + '!');
+  alert('The winner is the: ' + winner + '!');
 } else {
-  console.log('The sum is even.');
+  console.log('The winner is: ' + winner + '!');
+  alert('The winner is: ' + winner + '!');
 }
-
-// ------------------- Check the winner -------------------
-
-// Check user's guess: transforming into boolean variable (for comparison)
-if (user_guess === 'odd') {
-  var check_user_guess = true;
-} else if (user_guess === 'even') {
-  check_user_guess = false;
-}
-
-// Comparison between user's guess (boolean) and sum (boolean)
-if (check_user_guess && check_odd) {
-  console.log('You won! The sum is odd.');
-} else if (!check_user_guess && !check_odd) {
-  console.log('You won! The sum is even.');
-} else if (check_user_guess && !check_odd) {
-  console.log('You lose! The sum is even and the computer won.');
-} else if (!check_user_guess && check_odd) {
-  console.log('You lose! The sum is odd and the computer won.');
-}
-
 
 // --------------------- Creation of functions ---------------------
 
@@ -162,4 +145,36 @@ function checkOdd(number){
     check_odd = false;
   }
   return check_odd;
+}
+
+// ***** FUNCTION: Check the Winner *****
+function checkWinner(player_guess, guess_element, player) {
+  // Check user's guess: transforming into boolean variable (for comparison)
+  if (player_guess === 'odd') {
+    var check_player_guess = true;
+  } else if (player_guess === 'even') {
+    check_player_guess = false;
+  }
+  // Check if Sum is odd or even (with function)
+  var check_guess_element = checkOdd(guess_element);
+  if (check_guess_element) {
+    console.log('The sum is odd.');
+  } else {
+    console.log('The sum is even.');
+  }
+  // Comparison between user's guess (boolean) and sum (boolean)
+  if (check_player_guess && check_guess_element) {
+    var guess_winner = player;
+    console.log('You won! The sum is odd.');
+  } else if (!check_player_guess && !check_guess_element) {
+    guess_winner = player;
+    console.log('You won! The sum is even.');
+  } else if (check_player_guess && !check_guess_element) {
+    guess_winner = 'computer';
+    console.log('You lose! The sum is even and the computer won.');
+  } else if (!check_player_guess && check_guess_element) {
+    guess_winner = 'computer';
+    console.log('You lose! The sum is odd and the computer won.');
+  }
+  return guess_winner;
 }
