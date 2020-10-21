@@ -1,0 +1,149 @@
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 50px 0 30px;
+  color: #4B088A;
+  text-shadow: 3px 3px #D8CEF6;
+}
+
+h2 {
+  font-weight: 800;
+  padding-bottom: 20px;
+}
+
+p {
+  font-size: 20px;
+}
+
+span {
+  font-weight: 700;
+}
+
+#page-wrapper {
+  width: 100%;
+  height: 100%;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+h1::before {
+  content: '\f887';
+}
+
+h1::after {
+  content: '\f162';
+}
+
+h1::before,
+h1::after {
+  font-weight: 700;
+  font-family: "Font Awesome 5 Free";
+}
+
+h1::before {
+  margin-right: 40px;
+}
+
+h1::after {
+  margin-left: 40px;
+}
+
+.palindromes,
+.odd-or-even,
+.signup-section {
+  padding: 20px 0;
+}
+
+.palindromes p,
+.odd-or-even p {
+  padding-left: 20px;
+}
+
+.signup-section h2#signup-request-title {
+  padding-bottom: 30px;
+}
+
+.signup-section h2#signup-request-title::before {
+  content: '\f234';
+  font-weight: 700;
+  font-family: "Font Awesome 5 Free";
+  margin-right: 20px;
+  color: #4B088A;
+  text-shadow: 3px 3px #D8CEF6;
+}
+
+.signup-section h3#signup-request {
+  padding-bottom: 5px;
+}
+
+.signup-section h3#signup-request,
+.signup-section p#error {
+  color: #A61C1C;
+  font-weight: 600;
+}
+
+p#check-console {
+  font-size: 30px;
+  font-weight: 700;
+  padding: 30px 0;
+  color: #4B088A;
+  text-shadow: 2px 2px #D8CEF6;
+}
+
+p#check-console::before {
+  content: '\f101';
+  margin-right: 20px;
+}
+
+p#check-console::after {
+  content: '\f100';
+  margin-left: 20px;
+}
+
+p#check-console::before,
+p#check-console::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+  font-size: 30px;
+}
+
+p#check-console:hover,
+p#check-console::before,
+p#check-console::after {
+  color:  #642EFE;
+  text-shadow: 2px 2px #F6D8CE;
+  cursor: pointer;
+}
+/******************** Media Query *********************/
+
+/* Responsive - Breakpoint Medium 768px md */
+@media screen and (min-width: 768px) {
+  .palindromes,
+  .odd-or-even,
+  .signup-section {
+    text-align: center;
+  }
+
+  .palindromes p,
+  .odd-or-even p {
+    padding-left: 0px;
+  }
+}
+
+/* Responsive - Breakpoint Extra Large 1200px xl */
+@media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 50px;
+  }
+
+  .palindromes,
+  .odd-or-even,
+  .signup-section {
+    padding: 30px;
+  }
+}
