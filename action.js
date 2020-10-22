@@ -28,7 +28,7 @@ console.log('');
 console.log('--- Invoking function SOLUTION N. 1 ---');
 console.log('');
 
-if (checkPalindrome1(word_to_check)) {
+if (isPalindrome1(word_to_check)) {
   console.log('The word \'' + word_to_check + '\' you entered is a palindrome.');
   alert('The word \'' + word_to_check + '\' you entered is a palindrome.');
 } else {
@@ -41,7 +41,7 @@ console.log('');
 console.log('--- Invoking function SOLUTION N. 2 ---');
 console.log('');
 
-if (checkPalindrome2 (word_to_check)) {
+if (isPalindrome2 (word_to_check)) {
   console.log('The word \'' + word_to_check + '\' you entered is a palindrome.');
   alert('The word \'' + word_to_check + '\' you entered is a palindrome.');
 } else {
@@ -53,8 +53,8 @@ console.log('');
 
 // ----------- Creation of the function to check Palindromes -----------
 
-// ### SOLUTION NUMBER 1 - Comparing characters (with array) ###
-function checkPalindrome1(word1) {
+// ### SOLUTION NUMBER 1 vers.1 - Comparing characters (with ARRAY) ###
+function isPalindrome1(word1) {
 
   // Standardize the word to lowercase --> necessary to compare each character
   var standardized_word1 = word1.toLowerCase();
@@ -65,7 +65,7 @@ function checkPalindrome1(word1) {
   console.log('The word (already standardized to lowercase) transformed into an array is: ');
   console.log(word_array1);
 
-  // Check if the word (already standardized to lowercase) is a palindrome
+  // Check if the word (ARRAY standardized to lowercase) is a palindrome
   var check_palindrome1 = true;
 
   for (var i = 0; i < word_array1.length && check_palindrome1; i++) {
@@ -78,9 +78,32 @@ function checkPalindrome1(word1) {
   return check_palindrome1;
 }
 
+/*
+// ### SOLUTION NUMBER 1 vers.2 - Comparing characters (STRING: without array) ###
+
+// Check if the word (already standardized to lowercase) is a palindrome
+function isPalindrome1(word1) {
+
+  // Standardize the word to lowercase --> necessary to compare each character
+  var standardized_word1 = word1.toLowerCase();
+  console.log('The word standardized to lowercase is: ' + standardized_word1 + '.');
+
+  // Check if the word (STRING standardized to lowercase) is a palindrome
+  var check_palindrome1 = true;
+
+  for (var i = 0; i < standardized_word1.length && check_palindrome1; i++) {
+    var last_character1 = standardized_word1.charAt(standardized_word1.length - (i+1));
+    if (standardized_word1.charAt(i) !== last_character1) {
+      check_palindrome1 = false;
+    }
+  }
+
+  return check_palindrome1;
+}
+*/
 
 // ### SOLUTION NUMBER 2 - Comparing reversed word (with array) ###
-function checkPalindrome2(word2) {
+function isPalindrome2(word2) {
 
   // Standardize the word to lowercase --> necessary for comparison
   var standardized_word2 = word2.toLowerCase();
