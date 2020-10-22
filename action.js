@@ -168,14 +168,12 @@ while (check_valid_number === false) {
 */
 
 // Variables initialization: user's guess (odd or even)
-var user_guess = prompt('What is your guess? Choose between \'odd\' or \'even\'.');
-user_guess = user_guess.toLowerCase();
+var user_guess = prompt('What is your guess? Choose between \'odd\' or \'even\'.').toLowerCase();
 
 // Check valid input: user's guess
 while (user_guess !== 'odd' && user_guess !== 'even') {
   alert('ERROR. The value you entered is not valid.');
-  user_guess = prompt('Please enter \'odd\' or \'even\'.');
-  user_guess = user_guess.toLowerCase();
+  user_guess = prompt('Please enter \'odd\' or \'even\'.').toLowerCase();
 }
 console.log('The user\'s guess is: ' + user_guess + '.');
 
@@ -188,7 +186,7 @@ var sum = sumNumbers(user_number, pc_number);
 console.log('The sum of the two numbers is: ' + sum + '.');
 
 // Check the winner (with function)
-var winner = checkWinner(user_guess, sum, user_name);
+var winner = isWinner(user_guess, sum, user_name);
 if (winner === 'computer') {
   console.log('The winner is: the ' + winner + '!');
   alert('The winner is: the ' + winner + '!');
@@ -212,19 +210,18 @@ function sumNumbers(num1, num2) {
 }
 
 // ***** FUNCTION: Check odd-even numbers *****
-function checkOdd(number){
+function isOdd(number){
   if (number % 2) {
     // If the number is odd it returns "true"
-    var check_odd = true;
+    return true;
   } else {
     // If the number is even it returns "false"
-    check_odd = false;
+    return false;
   }
-  return check_odd;
 }
 
 // ***** FUNCTION: Check the Winner *****
-function checkWinner(player_guess, guess_element, player) {
+function isWinner(player_guess, guess_element, player) {
   // Check user's guess: transforming into boolean variable (for comparison)
   if (player_guess === 'odd') {
     var check_player_guess = true;
@@ -232,7 +229,7 @@ function checkWinner(player_guess, guess_element, player) {
     check_player_guess = false;
   }
   // Check if Sum is odd or even (with function)
-  var check_guess_element = checkOdd(guess_element);
+  var check_guess_element = isOdd(guess_element);
   if (check_guess_element) {
     console.log('The sum is odd.');
   } else {
