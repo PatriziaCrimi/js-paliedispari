@@ -22,40 +22,93 @@ console.log('');
 // Variables initialization
 var word_to_check = prompt('Enter a word to check if it is a palindrome.');
 console.log('The word you entered is: ' + word_to_check + '.');
+console.log('');
 
-// Output in console
-if (checkPalindrome(word_to_check)) {
+// Output in console - invoking function SOLUTION N. 1
+console.log('--- Invoking function SOLUTION N. 1 ---');
+console.log('');
+
+if (checkPalindrome1(word_to_check)) {
   console.log('The word \'' + word_to_check + '\' you entered is a palindrome.');
+  alert('The word \'' + word_to_check + '\' you entered is a palindrome.');
 } else {
   console.log('The word \'' + word_to_check + '\' you entered is not a palindrome.');
+  alert('The word \'' + word_to_check + '\' you entered is not a palindrome.');
 }
 console.log('');
 
-// ----------- Creation of the function "checkPalindrome" -----------
+// Output in console - invoking function SOLUTION N. 2
+console.log('--- Invoking function SOLUTION N. 2 ---');
+console.log('');
 
-function checkPalindrome(word) {
+if (checkPalindrome2 (word_to_check)) {
+  console.log('The word \'' + word_to_check + '\' you entered is a palindrome.');
+  alert('The word \'' + word_to_check + '\' you entered is a palindrome.');
+} else {
+  console.log('The word \'' + word_to_check + '\' you entered is not a palindrome.');
+  alert('The word \'' + word_to_check + '\' you entered is not a palindrome.');
+}
+console.log('');
+
+
+// ----------- Creation of the function to check Palindromes -----------
+
+// ### SOLUTION NUMBER 1 - Comparing characters (with array) ###
+function checkPalindrome1(word1) {
 
   // Standardize the word to lowercase --> necessary to compare each character
-  var standardized_word = word.toLowerCase();
-  console.log('The word standardized to lowercase is: ' + standardized_word + '.');
+  var standardized_word1 = word1.toLowerCase();
+  console.log('The word standardized to lowercase is: ' + standardized_word1 + '.');
 
   // Transforming string into an array
-  var word_array = Array.from(standardized_word);
+  var word_array1 = Array.from(standardized_word1);
   console.log('The word (already standardized to lowercase) transformed into an array is: ');
-  console.log(word_array);
+  console.log(word_array1);
 
   // Check if the word (already standardized to lowercase) is a palindrome
-  var check_palindrome = true;
+  var check_palindrome1 = true;
 
-  for (var i = 0; i < word_array.length && check_palindrome; i++) {
-    var last_character = word_array.length - (i+1);
-    if (word_array[i] !== word_array[last_character]) {
-      check_palindrome = false;
+  for (var i = 0; i < word_array1.length && check_palindrome1; i++) {
+    var last_character1 = word_array1.length - (i+1);
+    if (word_array1[i] !== word_array1[last_character1]) {
+      check_palindrome1 = false;
     }
   }
-  return check_palindrome;
+
+  return check_palindrome1;
 }
 
+
+// ### SOLUTION NUMBER 2 - Comparing reversed word (with array) ###
+function checkPalindrome2(word2) {
+
+  // Standardize the word to lowercase --> necessary for comparison
+  var standardized_word2 = word2.toLowerCase();
+  console.log('The word standardized to lowercase is: ' + standardized_word2 + '.');
+
+  // Transforming string into an array
+  var word_array2 = standardized_word2.split(''); // parameter: empty string as a separator
+  console.log('The word (already standardized to lowercase) transformed into an array is: ');
+  console.log(word_array2);
+
+  // Reverse the array (to reverse the characters creating a new word)
+  var reversed_word_array2 = word_array2.reverse();
+  console.log('The reversed word array is: ');
+  console.log(reversed_word_array2);
+
+  // Transforming reversed array into a string to obtain the reversed word
+  var reversed_word = reversed_word_array2.join('');  // parameter: empty string as a separator
+  console.log('The reversed word is: ' + reversed_word + '.');
+
+  // Check if the word is a palindrome --> comparison between original word (to lowercase) and reversed word
+  if (standardized_word2 === reversed_word) {
+    var check_palindrome2 = true;
+  } else {
+    check_palindrome2 = false;
+  }
+
+  return check_palindrome2;
+}
 
 // ******************** EXERCISE NUMBER 2. ODD OR EVEN? ********************
 console.log('*** EXERCISE NUMBER 2. ODD OR EVEN? ***');
@@ -114,8 +167,8 @@ console.log('The sum of the two numbers is: ' + sum + '.');
 // Check the winner (with function)
 var winner = checkWinner(user_guess, sum, user_name);
 if (winner === 'computer') {
-  console.log('The winner is the: ' + winner + '!');
-  alert('The winner is the: ' + winner + '!');
+  console.log('The winner is: the ' + winner + '!');
+  alert('The winner is: the ' + winner + '!');
 } else {
   console.log('The winner is: ' + winner + '!');
   alert('The winner is: ' + winner + '!');
