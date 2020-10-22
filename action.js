@@ -19,23 +19,43 @@ Ad esempio, l'utente inserisce il numero 1 e indica come scelta "pari"; il compu
 console.log('*** EXERCISE NUMBER 1. PALINDROMES ***');
 console.log('');
 
+// --------- SOLUTION NUMBER 1 vers.1 - Comparing characters (with ARRAY) ---------
+
 // Variables initialization
 var word_to_check = prompt('Enter a word to check if it is a palindrome.');
-console.log('The word you entered is: ' + word_to_check + '.');
+console.log('The first word you entered is: ' + word_to_check + '.');
 console.log('');
+// Print input in HTML --> storing the words to check in an array
+var word_to_check_array = [word_to_check];
 
-// Output in console - invoking function SOLUTION N. 1
+// Output in console & HTML - invoking function SOLUTION N. 1
 console.log('--- Invoking function SOLUTION N. 1 ---');
 console.log('');
+
+var print_palindrome_check = document.getElementsByClassName('palindrome-check');
 
 if (isPalindrome1(word_to_check)) {
   console.log('The word \'' + word_to_check + '\' you entered is a palindrome.');
   alert('The word \'' + word_to_check + '\' you entered is a palindrome.');
+  // Print output in HTML
+  print_palindrome_check[0].innerHTML = ' is a palindrome';
 } else {
   console.log('The word \'' + word_to_check + '\' you entered is not a palindrome.');
   alert('The word \'' + word_to_check + '\' you entered is not a palindrome.');
+  // Print output in HTML
+  print_palindrome_check[0].innerHTML = ' is not a palindrome';
 }
 console.log('');
+
+
+// --------- SOLUTION NUMBER 2 - Comparing reversed word (with array) ---------
+
+// Variables initialization
+var word_to_check = prompt('Enter a word to check if it is a palindrome.');
+console.log('The second word you entered is: ' + word_to_check + '.');
+console.log('');
+// Print input in HTML --> storing the words to check in an array
+word_to_check_array.push(word_to_check);
 
 // Output in console - invoking function SOLUTION N. 2
 console.log('--- Invoking function SOLUTION N. 2 ---');
@@ -44,12 +64,28 @@ console.log('');
 if (isPalindrome2 (word_to_check)) {
   console.log('The word \'' + word_to_check + '\' you entered is a palindrome.');
   alert('The word \'' + word_to_check + '\' you entered is a palindrome.');
+  // Print output in HTML
+  print_palindrome_check[1].innerHTML = ' is a palindrome';
 } else {
   console.log('The word \'' + word_to_check + '\' you entered is not a palindrome.');
   alert('The word \'' + word_to_check + '\' you entered is not a palindrome.');
+  // Print output in HTML
+  print_palindrome_check[1].innerHTML = ' is not a palindrome';
 }
 console.log('');
 
+
+// ---------------------------- Print Output in HTML ----------------------------
+
+// Print words to check (array)
+var print_word = document.getElementsByClassName('word-to-check');
+var j = 0;
+for (var i = 0; i < print_word.length; i++) {
+  print_word[i].innerHTML = word_to_check_array[j];
+  if (i >= 1) {
+    j = 1;
+  }
+}
 
 // ----------- Creation of the function to check Palindromes -----------
 
@@ -133,67 +169,86 @@ function isPalindrome2(word2) {
   return check_palindrome2;
 }
 
+
 // ******************** EXERCISE NUMBER 2. ODD OR EVEN? ********************
 console.log('*** EXERCISE NUMBER 2. ODD OR EVEN? ***');
 console.log('');
 
-// Variables and constants initialization: user's number
+// Variables and constants initialization: player's number
 const minimum_number = 1;
 const maximum_number = 5;
-var user_name = prompt('Enter your name.');
-console.log('Player: ' + user_name + ' VS the computer.');
-var user_number = parseFloat(prompt('Enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
+var player_name = prompt('Enter your name.');
+console.log('Player: ' + player_name + ' VS the computer.');
+var player_number = parseFloat(prompt('Enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
 
-// Check valid input: user's number - OPTIMIZED SOLUTION (only While loop)
-while (isNaN(user_number) || user_number < minimum_number || user_number > maximum_number) {
+// Check valid input: player's number - OPTIMIZED SOLUTION (only While loop)
+while (isNaN(player_number) || player_number < minimum_number || player_number > maximum_number) {
   alert('ERROR. The value you entered is invalid.');
-  user_number = parseFloat(prompt('Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
+  player_number = parseFloat(prompt('Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
   console.log('ERROR. The value you entered is invalid. Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.');
 }
-console.log('The number you entered is: ' + user_number + '.');
+console.log('The number you entered is: ' + player_number + '.');
 
 /*
-// Check valid input: user's number - SOLUTION While loop & If
+// Check valid input: player's number - SOLUTION While loop & If
 var check_valid_number = false;
 while (check_valid_number === false) {
-  if (!isNaN(user_number) && user_number >= minimum_number && user_number <= maximum_number) {
-    console.log('The number you entered is: ' + user_number + '.');
+  if (!isNaN(player_number) && player_number >= minimum_number && player_number <= maximum_number) {
+    console.log('The number you entered is: ' + player_number + '.');
     check_valid_number = true;
   } else {
     alert('ERROR. The value you entered is invalid.');
-    user_number = parseFloat(prompt('Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
+    player_number = parseFloat(prompt('Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.'));
     console.log('ERROR. The value you entered is invalid. Please enter a number ranging from ' + minimum_number + ' to ' + maximum_number + '.');
   }
 }
 */
 
-// Variables initialization: user's guess (odd or even)
-var user_guess = prompt('What is your guess? Choose between \'odd\' or \'even\'.').toLowerCase();
+// Variables initialization: player's guess (odd or even)
+var player_guess = prompt('What is your guess? Choose between \'odd\' or \'even\'.').toLowerCase();
 
-// Check valid input: user's guess
-while (user_guess !== 'odd' && user_guess !== 'even') {
+// Check valid input: player's guess
+while (player_guess !== 'odd' && player_guess !== 'even') {
   alert('ERROR. The value you entered is not valid.');
-  user_guess = prompt('Please enter \'odd\' or \'even\'.').toLowerCase();
+  player_guess = prompt('Please enter \'odd\' or \'even\'.').toLowerCase();
 }
-console.log('The user\'s guess is: ' + user_guess + '.');
+console.log('The player\'s guess is: ' + player_guess + '.');
 
 // Generating random number: computer's number (with function)
 var pc_number = randomNumber(minimum_number, maximum_number);
 console.log('The computer\'s number is: ' + pc_number + '.');
 
 // Calculating Sum (with function)
-var sum = sumNumbers(user_number, pc_number);
+var sum = sumNumbers(player_number, pc_number);
 console.log('The sum of the two numbers is: ' + sum + '.');
 
 // Check the winner (with function)
-var winner = isWinner(user_guess, sum, user_name);
+var winner = isWinner(player_guess, sum, player_name);
 if (winner === 'computer') {
-  console.log('The winner is: the ' + winner + '!');
   alert('The winner is: the ' + winner + '!');
+  // Print winner in HTML
+  document.getElementById('winner-identity').innerHTML = 'the ' + winner;
 } else {
-  console.log('The winner is: ' + winner + '!');
   alert('The winner is: ' + winner + '!');
+  document.getElementById('winner-identity').innerHTML = winner;
 }
+
+
+// --------------------- Print Output in HTML ---------------------
+
+// Print player name
+var print_player_name = document.getElementsByClassName('player-name');
+for (i = 0; i < print_player_name.length; i++) {
+  print_player_name[i].innerHTML = player_name;
+}
+// Print player's number
+document.getElementById('player-number').innerHTML = player_number;
+// Print player's guess
+document.getElementById('player-guess').innerHTML = player_guess;
+// Print computer's guess
+document.getElementById('pc-number').innerHTML = pc_number;
+// Print sum
+document.getElementById('sum-result').innerHTML = sum;
 
 // --------------------- Creation of functions ---------------------
 
@@ -222,7 +277,7 @@ function isOdd(number){
 
 // ***** FUNCTION: Check the Winner *****
 function isWinner(player_guess, guess_element, player) {
-  // Check user's guess: transforming into boolean variable (for comparison)
+  // Check player's guess: transforming into boolean variable (for comparison)
   if (player_guess === 'odd') {
     var check_player_guess = true;
   } else if (player_guess === 'even') {
@@ -232,10 +287,14 @@ function isWinner(player_guess, guess_element, player) {
   var check_guess_element = isOdd(guess_element);
   if (check_guess_element) {
     console.log('The sum is odd.');
+    // Print output in HTML
+    document.getElementById('check-odd').innerHTML = 'odd';
   } else {
     console.log('The sum is even.');
+    // Print output in HTML
+    document.getElementById('check-odd').innerHTML = 'even';
   }
-  // Comparison between user's guess (boolean) and sum (boolean)
+  // Comparison between player's guess (boolean) and sum (boolean)
   if (check_player_guess && check_guess_element) {
     var guess_winner = player;
     console.log('You won! The sum is odd.');
