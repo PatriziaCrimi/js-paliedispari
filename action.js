@@ -266,13 +266,15 @@ function sumNumbers(num1, num2) {
 
 // ***** FUNCTION: Check odd-even numbers *****
 function isOdd(number){
+  let is_odd;
   if (number % 2) {
     // If the number is odd it returns "true"
-    return true;
+    is_odd = true;
   } else {
     // If the number is even it returns "false"
-    return false;
+    is_odd = false;
   }
+  return is_odd;
 }
 
 // ***** FUNCTION: Check the Winner *****
